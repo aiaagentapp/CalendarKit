@@ -8,7 +8,7 @@ public class AllDayView: UIView {
   var style = AllDayStyle()
   
   let allDayLabelWidth: CGFloat = 53.0
-  let allDayEventHeight: CGFloat = 24.0
+  let allDayEventHeight: CGFloat = 60.0
   
   public var events: [EventDescriptor] = [] {
     didSet {
@@ -71,15 +71,15 @@ public class AllDayView: UIView {
      }
      ````
      */
-    svLeftConstraint.priority = UILayoutPriority(rawValue: 999)
+    //svLeftConstraint.priority = UILayoutPriority(rawValue: 999)
     
     svLeftConstraint.isActive = true
     sv.topAnchor.constraint(equalTo: topAnchor, constant: 2).isActive = true
     sv.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     bottomAnchor.constraint(equalTo: sv.bottomAnchor, constant: 2).isActive = true
     
-    let maxAllDayViewHeight = allDayEventHeight * 2 + allDayEventHeight * 0.5
-    heightAnchor.constraint(lessThanOrEqualToConstant: maxAllDayViewHeight).isActive = true
+    //let maxAllDayViewHeight = allDayEventHeight * 2 + allDayEventHeight * 0.5
+    //heightAnchor.constraint(lessThanOrEqualToConstant: maxAllDayViewHeight).isActive = true
     
     return sv
   }()
@@ -112,7 +112,7 @@ public class AllDayView: UIView {
   public func updateStyle(_ newStyle: AllDayStyle) {
     style = newStyle.copy() as! AllDayStyle
     
-    backgroundColor = style.backgroundColor
+    backgroundColor = UIColor.hexStringToUIColor(hex: "#FFF5E3")
     textLabel.font = style.allDayFont
     textLabel.textColor = style.allDayColor
   }
@@ -139,31 +139,19 @@ public class AllDayView: UIView {
     // create vertical stack view
     let verticalStackView = UIStackView(
       distribution: .fillEqually,
-      spacing: 1.0
+      spacing: 4.0
     )
-    var horizontalStackView: UIStackView! = nil
     
     for (index, anEventDescriptor) in self.events.enumerated() {
       
       // create event
-      let eventView = EventView(frame: CGRect.zero)
+      let eventView = CustomEventView()
       eventView.updateWithDescriptor(event: anEventDescriptor)
       eventView.delegate = self.eventViewDelegate
       eventView.heightAnchor.constraint(equalToConstant: allDayEventHeight).isActive = true
       
-      // create horz stack view if index % 2 == 0
-      if index % 2 == 0 {
-        horizontalStackView = UIStackView(
-          axis: .horizontal,
-          distribution: .fillEqually,
-          spacing: 1.0
-        )
-        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
-        verticalStackView.addArrangedSubview(horizontalStackView)
-      }
-      
       // add eventView to horz. stack view
-      horizontalStackView.addArrangedSubview(eventView)
+      verticalStackView.addArrangedSubview(eventView)
     }
     
     // add vert. stack view inside, pin vert. stack view, update content view by the number of horz. stack views

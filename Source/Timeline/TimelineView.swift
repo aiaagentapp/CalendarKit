@@ -6,6 +6,30 @@ public protocol TimelineViewDelegate: AnyObject {
   func timelineView(_ timelineView: TimelineView, didLongPressAt hour: Int)
 }
 
+extension UIColor {
+    class func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+        
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+}
+
 public class TimelineView: UIView, ReusableView {
 
   public weak var delegate: TimelineViewDelegate?
@@ -26,7 +50,7 @@ public class TimelineView: UIView, ReusableView {
     return Date()
   }
 
-  var eventViews = [EventView]()
+  var eventViews = [CustomEventView]()
   public private(set) var regularLayoutAttributes = [EventLayoutAttributes]()
   public private(set) var allDayLayoutAttributes = [EventLayoutAttributes]()
   
@@ -57,7 +81,7 @@ public class TimelineView: UIView, ReusableView {
       return allDayLayoutAttributes + regularLayoutAttributes
     }
   }
-  var pool = ReusePool<EventView>()
+  var pool = ReusePool<CustomEventView>()
 
   var firstEventYPosition: CGFloat? {
     return regularLayoutAttributes.sorted{$0.frame.origin.y < $1.frame.origin.y}
@@ -170,7 +194,7 @@ public class TimelineView: UIView, ReusableView {
         break
     }
     
-    backgroundColor = style.backgroundColor
+    backgroundColor = UIColor.hexStringToUIColor(hex: "#FFF5E3")
     setNeedsDisplay()
   }
 

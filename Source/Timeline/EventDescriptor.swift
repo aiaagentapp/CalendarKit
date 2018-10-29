@@ -10,4 +10,7 @@ public protocol EventDescriptor {
   var color: UIColor {get}
   var textColor: UIColor {get}
   var backgroundColor: UIColor {get}
+  var service: String {get}
+  var iconImage: UIImage {get}
+
 }

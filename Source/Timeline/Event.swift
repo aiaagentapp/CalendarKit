@@ -1,6 +1,8 @@
 import UIKit
 
 open class Event: EventDescriptor {
+  public var service: String = ""
+  public var iconImage: UIImage = UIImage()
   public var startDate = Date()
   public var endDate = Date()
   public var isAllDay = false
