@@ -11,7 +11,7 @@ public enum DateStyle {
     case system
 }
 
-public class CalendarStyle: NSCopying {
+public class CalendarStyle: NSCopying  {
   public var header = DayHeaderStyle()
   public var timeline = TimelineStyle()
   public init() {}
