@@ -50,7 +50,7 @@ public class TimelineView: UIView, ReusableView {
     return Date()
   }
 
-  var eventViews = [CustomEventView]()
+  var eventViews = [EventView]()
   public private(set) var regularLayoutAttributes = [EventLayoutAttributes]()
   public private(set) var allDayLayoutAttributes = [EventLayoutAttributes]()
   
@@ -65,7 +65,14 @@ public class TimelineView: UIView, ReusableView {
         if eventDescriptor.isAllDay {
           allDayLayoutAttributes.append(anEventLayoutAttribute)
         } else {
-          regularLayoutAttributes.append(anEventLayoutAttribute)
+        let timeIntervalMinutes = anEventLayoutAttribute.descriptor.endDate.timeIntervalSince(anEventLayoutAttribute.descriptor.startDate) / 60
+            let temp = anEventLayoutAttribute.descriptor as! Event
+            if(timeIntervalMinutes < 60) {
+              let timePeriod = TimePeriod(beginning: anEventLayoutAttribute.descriptor.endDate,
+                           chunk: TimeChunk.dateComponents(minutes: 60))
+                temp.endDate = timePeriod.end!
+            }
+          regularLayoutAttributes.append(EventLayoutAttributes(temp))
         }
       }
       
@@ -81,7 +88,7 @@ public class TimelineView: UIView, ReusableView {
       return allDayLayoutAttributes + regularLayoutAttributes
     }
   }
-  var pool = ReusePool<CustomEventView>()
+  var pool = ReusePool<EventView>()
 
   var firstEventYPosition: CGFloat? {
     return regularLayoutAttributes.sorted{$0.frame.origin.y < $1.frame.origin.y}
@@ -285,7 +292,7 @@ public class TimelineView: UIView, ReusableView {
   func layoutAllDayEvents() {
     
     //add day view needs to be in front of the nowLine
-	bringSubviewToFront(allDayView)
+    bringSubviewToFront(allDayView)
   }
   
   /**

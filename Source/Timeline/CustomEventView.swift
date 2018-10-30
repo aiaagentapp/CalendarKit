@@ -20,7 +20,11 @@ class CustomEventView: EventView {
         self.event = event
         self.backgroundColor = UIColor.clear
         backgroundView.backgroundColor = event.backgroundColor
-        titleLabel.text = event.text
+        if let attributedText = event.attributedText {
+            titleLabel.attributedText = attributedText
+        } else {
+            titleLabel.text = event.text
+        }
         descLabel.text = event.service
         iconImageView.image = event.iconImage
         self.layer.cornerRadius = 5

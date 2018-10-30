@@ -42,7 +42,7 @@ open class EventView: UIView {
   func configure() {
     clipsToBounds = true
     [tapGestureRecognizer, longPressGestureRecognizer].forEach {addGestureRecognizer($0)}
-
+    self.layer.cornerRadius = 5
     color = tintColor
     addSubview(textView)
   }
