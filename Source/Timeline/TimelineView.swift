@@ -154,7 +154,7 @@ public class TimelineView: UIView, ReusableView {
     return date.isToday
   }
 
-  override init(frame: CGRect) {
+  override public init(frame: CGRect) {
     super.init(frame: frame)
     configure()
   }
