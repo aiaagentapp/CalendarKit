@@ -106,7 +106,7 @@ public class TimelineView: UIView, ReusableView {
 
     self.allDayViewTopConstraint = allDayView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
     self.allDayViewTopConstraint?.isActive = true
-
+    
     allDayView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
     allDayView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
 
@@ -187,6 +187,8 @@ public class TimelineView: UIView, ReusableView {
 
   public func updateStyle(_ newStyle: TimelineStyle) {
     style = newStyle.copy() as! TimelineStyle
+    style.verticalInset = allDayView.bounds.height + 10
+    print("yea\(allDayView.bounds.height)")
     nowLine.updateStyle(style.timeIndicator)
     
     switch style.dateStyle {
