@@ -122,7 +122,7 @@ public class TimelineView: UIView, ReusableView {
   var horizontalEventInset: CGFloat = 3
 
   public var fullHeight: CGFloat {
-    return style.verticalInset * 2 + style.verticalDiff * 24
+    return style.verticalInset * 1.1 + style.verticalDiff * 24
   }
 
   var calendarWidth: CGFloat {
@@ -188,7 +188,6 @@ public class TimelineView: UIView, ReusableView {
   public func updateStyle(_ newStyle: TimelineStyle) {
     style = newStyle.copy() as! TimelineStyle
     style.verticalInset = allDayView.bounds.height + 10
-    print("yea\(allDayView.bounds.height)")
     nowLine.updateStyle(style.timeIndicator)
     
     switch style.dateStyle {
