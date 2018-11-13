@@ -1,6 +1,17 @@
 
 import UIKit
 
+extension UILabel {
+    func calculateMaxLines() -> Int {
+        let maxSize = CGSize(width: frame.size.width, height: CGFloat(Float.infinity))
+        let charSize = font.lineHeight
+        let text = (self.text ?? "") as NSString
+        let textSize = text.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+        let linesRoundedUp = Int(ceil(textSize.height/charSize))
+        return linesRoundedUp
+    }
+}
+
 public class AllDayView: UIView {
   
   internal weak var eventViewDelegate: EventViewDelegate?
@@ -105,7 +116,7 @@ public class AllDayView: UIView {
     // create vertical stack view
     
     let verticalStackView = UIStackView(
-        distribution: .fillEqually,
+        distribution: .fill,
         spacing: 4.0
     )
     for (index, anEventDescriptor) in self.events.enumerated() {
@@ -114,8 +125,9 @@ public class AllDayView: UIView {
       let eventView = CustomEventView()
       eventView.updateWithDescriptor(event: anEventDescriptor)
       eventView.delegate = self.eventViewDelegate
-      eventView.heightAnchor.constraint(equalToConstant: allDayEventHeight).isActive = true
       eventView.widthConstraint.constant = UIScreen.main.bounds.width - allDayLabelWidth
+      let numberOfLines = eventView.titleLabel.calculateMaxLines()
+      eventView.heightAnchor.constraint(equalToConstant: 30 + eventView.titleLabel.height * CGFloat(numberOfLines)).isActive = true
       // add eventView to horz. stack view
       verticalStackView.addArrangedSubview(eventView)
     }
