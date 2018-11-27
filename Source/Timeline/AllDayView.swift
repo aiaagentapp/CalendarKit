@@ -6,9 +6,12 @@ extension UILabel {
         let maxSize = CGSize(width: frame.size.width, height: CGFloat(Float.infinity))
         let charSize = font.lineHeight
         let text = (self.text ?? "") as NSString
-        let textSize = text.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
-        let linesRoundedUp = Int(ceil(textSize.height/charSize))
-        return linesRoundedUp
+        if(text.trimmingCharacters(in: .whitespacesAndNewlines).count > 0) {
+            let textSize = text.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+            let linesRoundedUp = Int(ceil(textSize.height/charSize))
+            return linesRoundedUp
+        }
+         return 0
     }
 }
 
@@ -126,8 +129,6 @@ public class AllDayView: UIView {
       eventView.updateWithDescriptor(event: anEventDescriptor)
       eventView.delegate = self.eventViewDelegate
       eventView.widthConstraint.constant = UIScreen.main.bounds.width - allDayLabelWidth
-      let numberOfLines = eventView.titleLabel.calculateMaxLines()
-      eventView.heightAnchor.constraint(equalToConstant: 30 + eventView.titleLabel.height * CGFloat(numberOfLines)).isActive = true
       // add eventView to horz. stack view
       verticalStackView.addArrangedSubview(eventView)
     }

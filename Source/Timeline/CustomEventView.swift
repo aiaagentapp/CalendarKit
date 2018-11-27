@@ -11,8 +11,11 @@ class CustomEventView: EventView {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var serviceLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var iconLocation: UIImageView!
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     var event: EventDescriptor!
     var baseView: UIView!
@@ -25,8 +28,12 @@ class CustomEventView: EventView {
         } else {
             titleLabel.text = event.text
         }
-        descLabel.text = event.service
+        serviceLabel.text = event.service
+        nameLabel.text = event.name
         iconImageView.image = event.iconImage
+        iconLocation.image = event.iconLocation
+        locationLabel.text = event.location
+        timeLabel.text = event.time
         self.layer.cornerRadius = 5
         setNeedsDisplay()
         setNeedsLayout()

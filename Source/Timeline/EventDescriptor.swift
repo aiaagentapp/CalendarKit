@@ -12,5 +12,8 @@ public protocol EventDescriptor {
   var backgroundColor: UIColor {get}
   var service: String {get}
   var iconImage: UIImage {get}
-
+  var name: String {get}
+  var time: String {get}
+  var iconLocation: UIImage {get}
+  var location: String {get}
 }

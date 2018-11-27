@@ -50,7 +50,7 @@ public class TimelineView: UIView, ReusableView {
     return Date()
   }
 
-  var eventViews = [EventView]()
+  var eventViews = [CustomEventView]()
   public private(set) var regularLayoutAttributes = [EventLayoutAttributes]()
   public private(set) var allDayLayoutAttributes = [EventLayoutAttributes]()
   
@@ -88,7 +88,7 @@ public class TimelineView: UIView, ReusableView {
       return allDayLayoutAttributes + regularLayoutAttributes
     }
   }
-  var pool = ReusePool<EventView>()
+  var pool = ReusePool<CustomEventView>()
 
   var firstEventYPosition: CGFloat? {
     return regularLayoutAttributes.sorted{$0.frame.origin.y < $1.frame.origin.y}

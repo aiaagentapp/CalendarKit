@@ -7,46 +7,45 @@ enum SelectedStyle {
   case Light
 }
 
+extension UIColor {
+    class func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+        
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+}
+
 class ExampleController: DayViewController, DatePickerControllerDelegate {
 
-  var data = [["Breakfast at Tiffany's",
-               "New York, 5th avenue"],
-
-              ["Workout",
-               "Tufteparken"],
-
-              ["Meeting with Alex",
-               "Home",
-               "Oslo, Tjuvholmen"],
-
-              ["Beach Volleyball",
-               "Ipanema Beach",
-               "Rio De Janeiro"],
-
-              ["WWDC",
-               "Moscone West Convention Center",
-               "747 Howard St"],
-
-              ["Google I/O",
-               "Shoreline Amphitheatre",
-               "One Amphitheatre Parkway"],
-
-              ["✈️️ to Svalbard ❄️️❄️️❄️️❤️️",
-               "Oslo Gardermoen"],
-
-              ["💻📲 Developing CalendarKit",
-               "🌍 Worldwide"],
-
-              ["Software Development Lecture",
-               "Mikpoli MB310",
-               "Craig Federighi"],
-
+  var data = ["Breakfast at Tiffany's dsfjsnfjne SAMKFMD dsfjsnfjne SAMKFMD mASNFDJF               SDFJNFJN",
+              "LASOSF KFm",
+              "HanSNJNF",
+              "Bicycle i wanna",
+              "fat bottomed girls",
+              "MAKMK MKEM dsfjsnfjne SAMKFMD dsfjsnfjne SAMKFMD"
               ]
 
-  var colors = [UIColor.blue,
-                UIColor.yellow,
-                UIColor.green,
-                UIColor.red]
+    var colors = [UIColor.hexStringToUIColor(hex: "#39c08d"),
+                UIColor.hexStringToUIColor(hex: "#f5a83b"),
+                UIColor.hexStringToUIColor(hex: "#e03572"),
+                UIColor.hexStringToUIColor(hex: "#1c7689"),
+                UIColor.hexStringToUIColor(hex: "#a03fb8")]
 
   var currentStyle = SelectedStyle.Light
 
@@ -104,27 +103,25 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
   // MARK: EventDataSource
 
   override func eventsForDate(_ date: Date) -> [EventDescriptor] {
-    var date = date.add(TimeChunk.dateComponents(hours: Int(arc4random_uniform(10) + 5)))
     var events = [Event]()
 
-    for i in 0...4 {
+    for i in 0..<data.count {
+      var date = date.add(TimeChunk.dateComponents(minutes: 133 + Int(arc4random_uniform(10))))
       let event = Event()
-      let duration = Int(arc4random_uniform(160) + 60)
+      let duration = 27
       let datePeriod = TimePeriod(beginning: date,
                                   chunk: TimeChunk.dateComponents(minutes: duration))
 
       event.startDate = datePeriod.beginning!
       event.endDate = datePeriod.end!
 
-      var info = data[Int(arc4random_uniform(UInt32(data.count)))]
-      
-      let timezone = TimeZone.ReferenceType.default
-      info.append(datePeriod.beginning!.format(with: "dd.MM.YYYY", timeZone: timezone))
-      info.append("\(datePeriod.beginning!.format(with: "HH:mm", timeZone: timezone)) - \(datePeriod.end!.format(with: "HH:mm", timeZone: timezone))")
-      event.text = info.reduce("", {$0 + $1 + "\n"})
+      let info = data[Int(arc4random_uniform(UInt32(data.count)))]
+      event.text = info
+      event.service = "For Frodo"
       event.color = colors[Int(arc4random_uniform(UInt32(colors.count)))]
-      event.isAllDay = Int(arc4random_uniform(2)) % 2 == 0
-      
+      event.backgroundColor = event.color
+      event.isAllDay = i < 2 ? true : false
+      event.iconImage = UIImage(named: "newIcon")!
       // Event styles are updated independently from CalendarStyle
       // hence the need to specify exact colors in case of Dark style
       if currentStyle == .Dark {

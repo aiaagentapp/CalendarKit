@@ -1,6 +1,10 @@
 import UIKit
 
 open class Event: EventDescriptor {
+  public var name: String = ""
+  public var time: String = ""
+  public var iconLocation: UIImage = UIImage()
+  public var location: String = ""
   public var service: String = ""
   public var iconImage: UIImage = UIImage()
   public var startDate = Date()
