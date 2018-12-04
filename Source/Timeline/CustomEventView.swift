@@ -22,6 +22,7 @@ class CustomEventView: EventView {
     override func updateWithDescriptor(event: EventDescriptor) {
         self.event = event
         self.backgroundColor = UIColor.clear
+        self.descriptor = event
         backgroundView.backgroundColor = event.backgroundColor
         if let attributedText = event.attributedText {
             titleLabel.attributedText = attributedText
