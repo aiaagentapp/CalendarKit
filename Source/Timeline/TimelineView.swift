@@ -123,7 +123,7 @@ public class TimelineView: UIView, ReusableView {
   var horizontalEventInset: CGFloat = 3
 
   public var fullHeight: CGFloat {
-    return style.verticalInset * 1.5 + style.verticalDiff * 24
+    return style.verticalInset * 1.15 + style.verticalDiff * 24
   }
 
   var calendarWidth: CGFloat {

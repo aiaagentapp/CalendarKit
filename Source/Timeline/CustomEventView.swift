@@ -24,17 +24,44 @@ class CustomEventView: EventView {
         self.backgroundColor = UIColor.clear
         self.descriptor = event
         backgroundView.backgroundColor = event.backgroundColor
+        
+        if(!event.service.isEmpty) {
+            serviceLabel.text = event.service
+            serviceLabel.isHidden = false
+        }
+        else {
+            serviceLabel.isHidden = true
+        }
         if let attributedText = event.attributedText {
             titleLabel.attributedText = attributedText
         } else {
             titleLabel.text = event.text
         }
-        serviceLabel.text = event.service
-        subtitleLabel.text = event.name
-        imageView.image = event.iconImage
-        iconLocation.image = event.iconLocation
-        locationLabel.text = event.location
-        timeLabel.text = event.time
+        if(!event.name.isEmpty) {
+            subtitleLabel.text = event.name
+            subtitleLabel.isHidden = false
+        }
+        else {
+            subtitleLabel.isHidden = true
+        }
+        if(!event.time.isEmpty) {
+            timeLabel.text = event.time
+            timeLabel.isHidden = false
+        }
+        else {
+            timeLabel.isHidden = true
+        }
+        if(!event.location.isEmpty) {
+            locationLabel.text = event.time
+            locationLabel.isHidden = false
+            iconLocation.image = event.iconLocation
+        }
+        else {
+            locationLabel.isHidden = true
+            iconLocation.isHidden = true
+        }
+        
+        imageView.image = event.iconImage        
         self.layer.cornerRadius = 5
         setNeedsDisplay()
         setNeedsLayout()
