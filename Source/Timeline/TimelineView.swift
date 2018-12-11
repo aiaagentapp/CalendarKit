@@ -50,7 +50,7 @@ public class TimelineView: UIView, ReusableView {
     return Date()
   }
 
-  var eventViews = [CustomEventView]()
+  var eventViews = [EventView]()
   public private(set) var regularLayoutAttributes = [EventLayoutAttributes]()
   public private(set) var allDayLayoutAttributes = [EventLayoutAttributes]()
   
@@ -88,7 +88,8 @@ public class TimelineView: UIView, ReusableView {
       return allDayLayoutAttributes + regularLayoutAttributes
     }
   }
-  var pool = ReusePool<CustomEventView>()
+    //CustomEventView
+  var pool = ReusePool<EventView>()
 
   var firstEventYPosition: CGFloat? {
     return regularLayoutAttributes.sorted{$0.frame.origin.y < $1.frame.origin.y}
@@ -122,7 +123,7 @@ public class TimelineView: UIView, ReusableView {
   var horizontalEventInset: CGFloat = 3
 
   public var fullHeight: CGFloat {
-    return style.verticalInset * 1.1 + style.verticalDiff * 24
+    return style.verticalInset * 1.5 + style.verticalDiff * 24
   }
 
   var calendarWidth: CGFloat {

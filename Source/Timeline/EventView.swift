@@ -25,6 +25,11 @@ open class EventView: UIView {
     view.isScrollEnabled = false
     return view
   }()
+    
+    lazy var iconImageView: UIImageView = {
+    let view = UIImageView()
+    return view
+  }()
 
   lazy var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
   lazy var longPressGestureRecognizer: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
@@ -45,6 +50,7 @@ open class EventView: UIView {
     self.layer.cornerRadius = 5
     color = tintColor
     addSubview(textView)
+    addSubview(iconImageView)
   }
 
   func updateWithDescriptor(event: EventDescriptor) {
@@ -57,6 +63,7 @@ open class EventView: UIView {
     }
     descriptor = event
     backgroundColor = event.backgroundColor
+    iconImageView.image = event.iconImage
     color = event.color
     setNeedsDisplay()
     setNeedsLayout()
@@ -89,6 +96,7 @@ open class EventView: UIView {
 
   override open func layoutSubviews() {
     super.layoutSubviews()
-    textView.fillSuperview()
+    textView.fillSuperview(left: 45, right: 0, top: 0, bottom: 0)
+    iconImageView.anchorInCorner(.topLeft, xPad: 15, yPad: 10, width: 20, height: 20)
   }
 }

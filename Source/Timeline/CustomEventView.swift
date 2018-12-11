@@ -9,9 +9,9 @@ import Foundation
 
 class CustomEventView: EventView {
     @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var serviceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var iconLocation: UIImageView!
@@ -30,8 +30,8 @@ class CustomEventView: EventView {
             titleLabel.text = event.text
         }
         serviceLabel.text = event.service
-        nameLabel.text = event.name
-        iconImageView.image = event.iconImage
+        subtitleLabel.text = event.name
+        imageView.image = event.iconImage
         iconLocation.image = event.iconLocation
         locationLabel.text = event.location
         timeLabel.text = event.time
