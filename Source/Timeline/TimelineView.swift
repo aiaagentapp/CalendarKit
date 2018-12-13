@@ -110,7 +110,6 @@ public class TimelineView: UIView, ReusableView {
     
     allDayView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
     allDayView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-
     return allDayView
   }()
   
@@ -188,7 +187,7 @@ public class TimelineView: UIView, ReusableView {
 
   public func updateStyle(_ newStyle: TimelineStyle) {
     style = newStyle.copy() as! TimelineStyle
-    style.verticalInset = allDayView.bounds.height + 10
+    style.verticalInset = allDayView.bounds.height + 40
     nowLine.updateStyle(style.timeIndicator)
     
     switch style.dateStyle {
@@ -239,7 +238,7 @@ public class TimelineView: UIView, ReusableView {
       context?.setLineWidth(onePixel)
       context?.translateBy(x: 0, y: 0.5)
       let x: CGFloat = 53
-      let y = style.verticalInset + iFloat * style.verticalDiff
+      let y = allDayViewHeight + iFloat * style.verticalDiff
       context?.beginPath()
       context?.move(to: CGPoint(x: x, y: y))
       context?.addLine(to: CGPoint(x: (bounds).width, y: y))
@@ -249,7 +248,7 @@ public class TimelineView: UIView, ReusableView {
       if i == hourToRemoveIndex { continue }
         
       let fontSize = style.font.pointSize
-      let timeRect = CGRect(x: 2, y: iFloat * style.verticalDiff + style.verticalInset - 7,
+      let timeRect = CGRect(x: 2, y: iFloat * style.verticalDiff + allDayViewHeight - 7,
                             width: style.leftInset - 8, height: fontSize + 2)
 
       let timeString = NSString(string: time)
