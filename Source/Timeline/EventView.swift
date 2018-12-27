@@ -52,19 +52,21 @@ open class EventView: UIView {
     addSubview(textView)
     addSubview(iconImageView)
   }
-
+    
   func updateWithDescriptor(event: EventDescriptor) {
-    if let attributedText = event.attributedText {
-      textView.attributedText = attributedText
+    
+    self.backgroundColor = event.backgroundColor
+    self.descriptor = event
+    self.color = event.color
+    self.iconImageView.image = event.iconImage
+    
+    if let otherEventText = event.otherEventAttrText {
+      textView.attributedText = otherEventText
     } else {
-      textView.text = event.text
+      textView.text = event.mainTitleText
       textView.textColor = event.textColor
       textView.font = event.font
     }
-    descriptor = event
-    backgroundColor = event.backgroundColor
-    iconImageView.image = event.iconImage
-    color = event.color
     setNeedsDisplay()
     setNeedsLayout()
   }

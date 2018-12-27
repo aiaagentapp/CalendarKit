@@ -9,60 +9,53 @@ import Foundation
 
 class CustomEventView: EventView {
     @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var iconIV: UIImageView!
+    @IBOutlet weak var mainTitleLabel: UILabel!
+    @IBOutlet weak var mainTitleRowView: UIStackView!
     @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var serviceLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var timeView: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var iconLocation: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var locationView: UIView!
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     var event: EventDescriptor!
     var baseView: UIView!
+    
     override func updateWithDescriptor(event: EventDescriptor) {
-        self.event = event
-        self.backgroundColor = UIColor.clear
-        self.descriptor = event
-        backgroundView.backgroundColor = event.backgroundColor
-        
-        if(!event.service.isEmpty) {
-            serviceLabel.text = event.service
-            serviceLabel.isHidden = false
-        }
-        else {
-            serviceLabel.isHidden = true
-        }
-        if let attributedText = event.attributedText {
-            titleLabel.attributedText = attributedText
-        } else {
-            titleLabel.text = event.text
-        }
-        if(!event.name.isEmpty) {
-            subtitleLabel.text = event.name
-            subtitleLabel.isHidden = false
-        }
-        else {
-            subtitleLabel.isHidden = true
-        }
-        if(!event.time.isEmpty) {
-            timeLabel.text = event.time
-            timeLabel.isHidden = false
-        }
-        else {
-            timeLabel.isHidden = true
-        }
-        if(!event.location.isEmpty) {
-            locationLabel.text = event.time
-            locationLabel.isHidden = false
-            iconLocation.image = event.iconLocation
-        }
-        else {
-            locationLabel.isHidden = true
-            iconLocation.isHidden = true
-        }
-        
-        imageView.image = event.iconImage        
         self.layer.cornerRadius = 5
+        self.event = event
+        self.iconIV.image = event.iconImage
+        self.descriptor = event
+        
+        self.typeLabel.text = event.typeText
+        self.typeLabel.isHidden = event.typeIsHidden
+        
+        if let otherEventText = event.otherEventAttrText {
+            self.mainTitleLabel.attributedText = otherEventText
+        } else {
+            self.mainTitleLabel.text = event.mainTitleText
+        }
+        
+        self.mainTitleLabel.textColor = event.textColor
+        self.mainTitleRowView.isHidden = event.mainTitleTextIsHidden
+        
+        self.subtitleLabel.text = event.subTitleText
+        self.subtitleLabel.textColor = event.textColor
+        self.subtitleLabel.isHidden = event.subTitleIsHidden
+        
+        self.timeLabel.text = event.timeText
+        self.timeLabel.textColor = event.textColor
+        self.timeView.isHidden = event.timeIsHidden
+        
+        self.locationLabel.text = event.locationText
+        self.locationLabel.textColor = event.textColor
+        self.locationView.isHidden = event.locationIsHidden
+        self.locationLabel.isHidden = event.locationIsHidden
+        
+        self.backgroundView.backgroundColor = event.backgroundColor
+        
         setNeedsDisplay()
         setNeedsLayout()
     }

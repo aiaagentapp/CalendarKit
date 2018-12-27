@@ -31,7 +31,7 @@ class ExampleNotificationController: UIViewController {
     var info = ["Compliance report"]
     info.append("\(datePeriod.beginning!.format(with: "dd.MM"))")
     info.append("\(datePeriod.beginning!.format(with: "HH:mm")) - \(datePeriod.end!.format(with: "HH:mm"))")
-    event.text = info.reduce("", {$0 + $1 + "\n"})
+    event.mainTitleText = info.reduce("", {$0 + $1 + "\n"})
     event.color = .red
     timelineContainer.timeline.layoutAttributes = [EventLayoutAttributes(event)]
     timelineContainer.scrollTo(hour24: 20)

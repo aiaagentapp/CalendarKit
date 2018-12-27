@@ -116,12 +116,12 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
       event.endDate = datePeriod.end!
 
       let info = data[Int(arc4random_uniform(UInt32(data.count)))]
-      event.text = info
-      event.service = "For Frodo"
+      event.mainTitleText = info
+      event.typeText = "For Frodo"
       event.color = colors[Int(arc4random_uniform(UInt32(colors.count)))]
       event.backgroundColor = event.color
       event.isAllDay = i < 2 ? true : false
-      event.iconImage = UIImage(named: "newIcon")!
+//      event.iconImage = UIImage(named: "newIcon")!
       // Event styles are updated independently from CalendarStyle
       // hence the need to specify exact colors in case of Dark style
       if currentStyle == .Dark {

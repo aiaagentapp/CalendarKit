@@ -18,13 +18,16 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomEventView" customModule="CalendarKit" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundView" destination="LM6-cx-7mX" id="Mla-Ux-wdo"/>
+                <outlet property="iconIV" destination="Eeu-0t-AK0" id="Gp8-A2-jX3"/>
                 <outlet property="iconLocation" destination="rn0-N5-6su" id="Knu-6Z-6uu"/>
-                <outlet property="imageView" destination="Eeu-0t-AK0" id="Mxl-Gi-ePZ"/>
                 <outlet property="locationLabel" destination="Nv6-T5-Ljp" id="Pqo-hB-E10"/>
-                <outlet property="serviceLabel" destination="oWa-Yf-4dO" id="Alx-L3-yZS"/>
+                <outlet property="locationView" destination="miH-cS-afW" id="zh8-tJ-VXc"/>
+                <outlet property="mainTitleLabel" destination="zOU-VK-Ja3" id="LjO-pp-mdK"/>
+                <outlet property="mainTitleRowView" destination="kJB-rB-USf" id="DXT-hL-dyW"/>
                 <outlet property="subtitleLabel" destination="j8D-zP-3S7" id="BhW-BJ-Nfh"/>
                 <outlet property="timeLabel" destination="dZi-IM-v1B" id="HIr-OO-iMF"/>
-                <outlet property="titleLabel" destination="zOU-VK-Ja3" id="LjO-pp-mdK"/>
+                <outlet property="timeView" destination="1Ks-nQ-gmm" id="u7P-cC-Rg6"/>
+                <outlet property="typeLabel" destination="oWa-Yf-4dO" id="Alx-L3-yZS"/>
                 <outlet property="widthConstraint" destination="VRR-Sz-fYk" id="Blo-YH-BpO"/>
             </connections>
         </placeholder>
@@ -90,7 +93,7 @@
                                                     <rect key="frame" x="0.0" y="38.5" width="315" height="52.5"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ks-nQ-gmm">
-                                                            <rect key="frame" x="0.0" y="0.0" width="38" height="52.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="48" height="52.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="[Time]" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZi-IM-v1B">
                                                                     <rect key="frame" x="0.0" y="0.0" width="38" height="16.5"/>
@@ -101,17 +104,17 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="dZi-IM-v1B" secondAttribute="trailing" id="Bxd-7P-72N"/>
+                                                                <constraint firstAttribute="trailing" secondItem="dZi-IM-v1B" secondAttribute="trailing" constant="10" id="Bxd-7P-72N"/>
                                                                 <constraint firstItem="dZi-IM-v1B" firstAttribute="top" secondItem="1Ks-nQ-gmm" secondAttribute="top" id="LNi-Hk-aZr"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dZi-IM-v1B" secondAttribute="bottom" id="b7B-4L-jRX"/>
                                                                 <constraint firstItem="dZi-IM-v1B" firstAttribute="leading" secondItem="1Ks-nQ-gmm" secondAttribute="leading" id="wx8-Rc-JYt"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="miH-cS-afW">
-                                                            <rect key="frame" x="38" y="0.0" width="30" height="52.5"/>
+                                                            <rect key="frame" x="48" y="0.0" width="20" height="52.5"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="rn0-N5-6su">
-                                                                    <rect key="frame" x="10" y="19" width="15" height="15"/>
+                                                                    <rect key="frame" x="0.0" y="19" width="15" height="15"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" priority="900" constant="15" id="B7c-X9-KvZ"/>
                                                                         <constraint firstAttribute="height" priority="900" constant="15" id="w6Y-Wc-8gW"/>
@@ -122,7 +125,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="rn0-N5-6su" secondAttribute="trailing" constant="5" id="DrG-MH-TaT"/>
                                                                 <constraint firstItem="rn0-N5-6su" firstAttribute="centerY" secondItem="miH-cS-afW" secondAttribute="centerY" priority="900" id="bZ1-TO-MlD"/>
-                                                                <constraint firstItem="rn0-N5-6su" firstAttribute="leading" secondItem="miH-cS-afW" secondAttribute="leading" constant="10" id="kvr-To-EQw"/>
+                                                                <constraint firstItem="rn0-N5-6su" firstAttribute="leading" secondItem="miH-cS-afW" secondAttribute="leading" id="kvr-To-EQw"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Location location location location location]" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nv6-T5-Ljp">
