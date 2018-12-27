@@ -49,6 +49,7 @@ class CustomEventView: EventView {
         self.timeLabel.textColor = event.textColor
         self.timeView.isHidden = event.timeIsHidden
         
+        self.iconLocation.image = event.iconLocation
         self.locationLabel.text = event.locationText
         self.locationLabel.textColor = event.textColor
         self.locationView.isHidden = event.locationIsHidden

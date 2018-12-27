@@ -20,7 +20,7 @@ public protocol EventDescriptor {
     // State
     var startDate: Date {get}
     var endDate: Date {get}
-    var eventTypeRawValue: String {get}
+    var eventTypeRawValue: Int {get}
     var calendarEventPurposeRawValue: String {get}
     var otherEventTypeRawValue: String {get}
     
