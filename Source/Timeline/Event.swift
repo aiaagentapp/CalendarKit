@@ -21,7 +21,7 @@ open class Event: EventDescriptor {
     // State
     public var startDate = Date()
     public var endDate = Date()
-    public var eventTypeRawValue: String = ""
+    public var eventTypeRawValue: Int = -1
     public var calendarEventPurposeRawValue: String = ""
     public var otherEventTypeRawValue: String = ""
 
