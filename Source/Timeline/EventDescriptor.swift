@@ -1,5 +1,11 @@
 import Foundation
 
+public enum EnumOtherEventTypePod {
+    case birthday
+    case maturing
+    case premiumTermEnding
+}
+
 public protocol EventDescriptor {
     var iconImage: UIImage {get}
     var typeText: String {get}
@@ -22,11 +28,16 @@ public protocol EventDescriptor {
     var endDate: Date {get}
     var eventTypeRawValue: Int {get}
     var calendarEventPurposeRawValue: String {get}
-    var otherEventTypeRawValue: String {get}
+    var name: String {get} // For Other Event
+    var policy: String {get} // For Other Event
+    var dueAmountInRM: String {get}  // For Other Event
+    var otherEventType: EnumOtherEventTypePod {get} // For Other Event
     
     // Custom
     var font: UIFont {get} // For Programmatically drawn view
+    var fontOtherEventBold: UIFont {get} // For Programmatically drawn view
+    var fontOtherEventNormal: UIFont {get} // For Programmatically drawn view
     var isAllDay: Bool {get} // For separating diifferent layout
-    var color: UIColor {get} // 
+    var color: UIColor {get} //
     
 }

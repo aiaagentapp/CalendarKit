@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import ActiveLabel
 
 class CustomEventView: EventView {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var iconIV: UIImageView!
-    @IBOutlet weak var mainTitleLabel: UILabel!
+    @IBOutlet weak var mainTitleLabel: ActiveLabel!
     @IBOutlet weak var mainTitleRowView: UIStackView!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
@@ -60,6 +61,119 @@ class CustomEventView: EventView {
         setNeedsDisplay()
         setNeedsLayout()
     }
+    
+    fileprivate func configActiveLabel(event: EventDescriptor) {
+        
+        let policyNo = event.policy
+        let name = event.name
+        
+        switch event.otherEventType {
+        case .birthday:
+            self.mainTitleLabel.customize { label in
+                
+                let boldType = ActiveType.custom(pattern: "\(name)")
+                self.mainTitleLabel.enabledTypes.append(boldType)
+                
+                label.text = "\(name)'s Birthday"
+                label.numberOfLines = 0
+                label.lineSpacing = 4
+                label.textColor = UIColor.black
+                
+                label.configureLinkAttribute = { (type, attributes, isSelected) in
+                    var atts = attributes
+                    switch type {
+                    case boldType:
+                        atts[NSAttributedString.Key.font] = event.fontOtherEventBold
+                    default:
+                        atts[NSAttributedString.Key.font] = event.fontOtherEventNormal
+                    }
+                    return atts
+                }
+                
+                label.handleCustomTap(for: boldType) { [weak self] _ in
+                    guard let `self` = self else { return }
+                    self.delegate?.eventViewNameDidTap(self)
+                }
+            }
+            
+        case .maturing:
+            self.mainTitleLabel.customize { label in
+                
+                let boldType = ActiveType.custom(pattern: "\(name)")
+                let normalType = ActiveType.custom(pattern: "\(policyNo)")
+                
+                self.mainTitleLabel.enabledTypes.append(boldType)
+                self.mainTitleLabel.enabledTypes.append(normalType)
+                
+                if event.dueAmountInRM.isEmpty {
+                    label.text = "Policy for \(policyNo) / \(name) is maturing today"
+                } else {
+                    label.text = "Policy for \(policyNo) / \(name) is maturing today \(event.dueAmountInRM)"
+                }
+                label.numberOfLines = 0
+                label.lineSpacing = 4
+                label.textColor = UIColor.black
+                
+                label.configureLinkAttribute = { (type, attributes, isSelected) in
+                    var atts = attributes
+                    switch type {
+                    case boldType:
+                        atts[NSAttributedString.Key.font] = event.fontOtherEventBold
+                    default:
+                        atts[NSAttributedString.Key.font] = event.fontOtherEventNormal
+                    }
+                    return atts
+                }
+                
+                label.handleCustomTap(for: boldType) { [weak self] _ in
+                    guard let `self` = self else { return }
+                    self.delegate?.eventViewNameDidTap(self)
+                }
+                
+                label.handleCustomTap(for: normalType) { [weak self] _ in
+                    guard let `self` = self else { return }
+                    self.delegate?.eventViewPolicyDidTap(self)
+                }
+            }
+            
+        case .premiumTermEnding:
+            self.mainTitleLabel.customize { label in
+                
+                let boldType = ActiveType.custom(pattern: "\(name)")
+                let normalType = ActiveType.custom(pattern: "\(policyNo)")
+                
+                self.mainTitleLabel.enabledTypes.append(boldType)
+                self.mainTitleLabel.enabledTypes.append(normalType)
+                
+                label.text = "Premium Payment Term for \(policyNo) / \(name) is expiring today"
+                label.numberOfLines = 0
+                label.lineSpacing = 4
+                label.textColor = UIColor.black
+                
+                label.configureLinkAttribute = { (type, attributes, isSelected) in
+                    var atts = attributes
+                    switch type {
+                    case boldType:
+                        atts[NSAttributedString.Key.font] = event.fontOtherEventBold
+                    default:
+                        atts[NSAttributedString.Key.font] = event.fontOtherEventNormal
+                    }
+                    return atts
+                }
+                
+                label.handleCustomTap(for: boldType) { [weak self] _ in
+                    guard let `self` = self else { return }
+                    self.delegate?.eventViewNameDidTap(self)
+                }
+                
+                label.handleCustomTap(for: normalType) { [weak self] _ in
+                    guard let `self` = self else { return }
+                    self.delegate?.eventViewPolicyDidTap(self)
+                }
+            }
+        }
+    }
+
     
     override func configure() {
         clipsToBounds = true

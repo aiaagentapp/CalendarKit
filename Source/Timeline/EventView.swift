@@ -3,8 +3,10 @@ import DateToolsSwift
 import Neon
 
 public protocol EventViewDelegate: AnyObject {
-  func eventViewDidTap(_ eventView: EventView)
-  func eventViewDidLongPress(_ eventview: EventView)
+    func eventViewDidTap(_ eventView: EventView)
+    func eventViewNameDidTap(_ eventView: EventView)
+    func eventViewPolicyDidTap(_ eventView: EventView)
+    func eventViewDidLongPress(_ eventview: EventView)
 }
 
 open class EventView: UIView {
