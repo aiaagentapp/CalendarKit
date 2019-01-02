@@ -34,8 +34,11 @@ class CustomEventView: EventView {
         self.typeLabel.isHidden = event.typeIsHidden
         
         if let otherEventText = event.otherEventAttrText {
-            self.mainTitleLabel.attributedText = otherEventText
+            self.tapGestureRecognizer.isEnabled = false
+//            self.mainTitleLabel.attributedText = otherEventText
+            self.configActiveLabel(event: event)
         } else {
+            self.tapGestureRecognizer.isEnabled = true
             self.mainTitleLabel.text = event.mainTitleText
         }
         
