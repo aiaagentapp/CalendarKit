@@ -108,7 +108,7 @@ class CustomEventView: EventView {
                 self.mainTitleLabel.enabledTypes.append(boldType)
                 self.mainTitleLabel.enabledTypes.append(normalType)
                 
-                if event.dueAmountInRM.isEmpty {
+                if event.dueAmount.isEmpty {
                     label.text = "Policy for \(policyNo) / \(name) is maturing today"
                 } else {
                     label.text = "Policy for \(policyNo) / \(name) is maturing today \(event.dueAmountInRM)"
