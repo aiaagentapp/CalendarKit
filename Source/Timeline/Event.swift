@@ -43,7 +43,7 @@ open class Event: EventDescriptor {
             backgroundColor = color.withAlphaComponent(0.3)
             var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
             color.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-            textColor = UIColor(hue: h, saturation: s, brightness: b * 0.4, alpha: a)
+//            textColor = UIColor(hue: h, saturation: s, brightness: b * 0.4, alpha: a)
         }
     }
     
