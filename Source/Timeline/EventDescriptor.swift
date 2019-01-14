@@ -12,6 +12,7 @@ public protocol EventDescriptor {
     var typeIsHidden: Bool {get}
     var mainTitleText: String {get}
     var mainTitleTextIsHidden: Bool {get}
+    var mainAttributedText: NSAttributedString? {get}
     var subTitleText: String {get}
     var subTitleIsHidden: Bool {get}
     var timeText: String {get}

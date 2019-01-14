@@ -7,6 +7,7 @@ open class Event: EventDescriptor {
     public var typeIsHidden: Bool = false
     public var mainTitleText: String = ""
     public var mainTitleTextIsHidden: Bool = false
+    public var mainAttributedText: NSAttributedString?
     
     public var subTitleText: String = ""
     public var subTitleIsHidden: Bool = true
