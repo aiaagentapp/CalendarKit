@@ -35,7 +35,7 @@ class CustomEventView: EventView {
         
         if let otherEventText = event.otherEventAttrText {
             self.tapGestureRecognizer.isEnabled = false
-//            self.mainTitleLabel.attributedText = otherEventText
+            self.mainTitleLabel.attributedText = otherEventText
             self.configActiveLabel(event: event)
         } else {
             self.tapGestureRecognizer.isEnabled = true
