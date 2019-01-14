@@ -29,8 +29,7 @@ open class Event: EventDescriptor {
     public var calendarEventPurposeRawValue: String = ""
     public var name: String = ""
     public var policy: String = ""
-    public var dueAmount: String = ""
-    public var dueAmountInRM: String = ""
+    public var otherEventText: String = ""
     public var otherEventType: EnumOtherEventTypePod = EnumOtherEventTypePod.birthday
 
     // Custom

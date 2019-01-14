@@ -31,8 +31,7 @@ public protocol EventDescriptor {
     var calendarEventPurposeRawValue: String {get}
     var name: String {get} // For Other Event
     var policy: String {get} // For Other Event
-    var dueAmount: String {get}  // For Other Event
-    var dueAmountInRM: String {get}  // For Other Event
+    var otherEventText: String {get} // For Other Event
     var otherEventType: EnumOtherEventTypePod {get} // For Other Event
     
     // Custom
