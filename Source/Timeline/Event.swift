@@ -29,8 +29,7 @@ open class Event: EventDescriptor {
     public var calendarEventPurposeRawValue: String = ""
     public var name: String = ""
     public var policy: String = ""
-    public var dueAmount: String = ""
-    public var dueAmountInRM: String = ""
+    public var otherEventText: String = ""
     public var otherEventType: EnumOtherEventTypePod = EnumOtherEventTypePod.birthday
 
     // Custom
@@ -43,7 +42,7 @@ open class Event: EventDescriptor {
             backgroundColor = color.withAlphaComponent(0.3)
             var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
             color.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-            textColor = UIColor(hue: h, saturation: s, brightness: b * 0.4, alpha: a)
+//            textColor = UIColor(hue: h, saturation: s, brightness: b * 0.4, alpha: a)
         }
     }
     public var minimumDuration: Int = 60

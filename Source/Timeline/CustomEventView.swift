@@ -33,9 +33,9 @@ class CustomEventView: EventView {
         self.typeLabel.text = event.typeText
         self.typeLabel.isHidden = event.typeIsHidden
         
-        if let otherEventText = event.otherEventAttrText {
+        if let otherEventRawText = event.otherEventAttrText {
             self.tapGestureRecognizer.isEnabled = false
-            self.mainTitleLabel.attributedText = otherEventText
+            self.mainTitleLabel.attributedText = otherEventRawText
             self.configActiveLabel(event: event)
         } else {
             self.tapGestureRecognizer.isEnabled = true
@@ -77,7 +77,7 @@ class CustomEventView: EventView {
                 let boldType = ActiveType.custom(pattern: "\(name)")
                 self.mainTitleLabel.enabledTypes.append(boldType)
                 
-                label.text = "\(name)'s Birthday"
+                label.text = event.otherEventText
                 label.numberOfLines = 0
                 label.lineSpacing = 4
                 label.textColor = UIColor.black
@@ -108,11 +108,7 @@ class CustomEventView: EventView {
                 self.mainTitleLabel.enabledTypes.append(boldType)
                 self.mainTitleLabel.enabledTypes.append(normalType)
                 
-                if event.dueAmount.isEmpty {
-                    label.text = "Policy for \(policyNo) / \(name) is maturing today"
-                } else {
-                    label.text = "Policy for \(policyNo) / \(name) is maturing today \(event.dueAmountInRM)"
-                }
+                label.text = event.otherEventText
                 label.numberOfLines = 0
                 label.lineSpacing = 4
                 label.textColor = UIColor.black
@@ -148,7 +144,7 @@ class CustomEventView: EventView {
                 self.mainTitleLabel.enabledTypes.append(boldType)
                 self.mainTitleLabel.enabledTypes.append(normalType)
                 
-                label.text = "Premium Payment Term for \(policyNo) / \(name) is expiring today"
+                label.text = event.otherEventText
                 label.numberOfLines = 0
                 label.lineSpacing = 4
                 label.textColor = UIColor.black
