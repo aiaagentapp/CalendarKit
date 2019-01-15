@@ -67,9 +67,9 @@ public class TimelineView: UIView, ReusableView {
                 } else {
                     let timeIntervalMinutes = anEventLayoutAttribute.descriptor.endDate.timeIntervalSince(anEventLayoutAttribute.descriptor.startDate) / 60
                     let temp = anEventLayoutAttribute.descriptor as! Event
-                    if(timeIntervalMinutes < 60) {
-                        let timePeriod = TimePeriod(beginning: anEventLayoutAttribute.descriptor.endDate,
-                                                    chunk: TimeChunk.dateComponents(minutes: 60))
+                    if(timeIntervalMinutes < Double(temp.minimumDuration)) {
+                        let timePeriod = TimePeriod(beginning: anEventLayoutAttribute.descriptor.startDate,
+                                                    chunk: TimeChunk.dateComponents(minutes: temp.minimumDuration))
                         temp.endDate = timePeriod.end!
                     }
                     regularLayoutAttributes.append(EventLayoutAttributes(temp))

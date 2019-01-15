@@ -41,5 +41,6 @@ public protocol EventDescriptor {
     var fontOtherEventNormal: UIFont {get} // For Programmatically drawn view
     var isAllDay: Bool {get} // For separating diifferent layout
     var color: UIColor {get} //
+    var minimumDuration: Int{ get } //dynamically set minimum duration of the appointment
     
 }

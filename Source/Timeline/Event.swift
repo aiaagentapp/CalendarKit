@@ -46,6 +46,7 @@ open class Event: EventDescriptor {
             textColor = UIColor(hue: h, saturation: s, brightness: b * 0.4, alpha: a)
         }
     }
+    public var minimumDuration: Int = 60
     
     public var userInfo: Any?
     public init() {}

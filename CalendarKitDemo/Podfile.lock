@@ -1,6 +1,6 @@
 PODS:
   - ActiveLabel (1.0.1)
-  - CalendarKit (0.5.18):
+  - CalendarKit (0.5.24):
     - ActiveLabel
     - DateToolsSwift
     - Neon
@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ActiveLabel: b8b2396fe25308d563601437d6605bf691c3b5db
-  CalendarKit: ecd07ec0fc21b7cde9fb25826b0c9be13df0bab2
+  CalendarKit: 636fc696c702343ff3b81bf276a9b6d95ac440c0
   DateToolsSwift: 875d97ff9e3a5d54abdd67a269b3f51c757b71ab
   Neon: 7fb5a9327e7e57911843f608e08f4893a74deaf9
 
