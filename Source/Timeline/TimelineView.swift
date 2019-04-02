@@ -53,7 +53,7 @@ public class TimelineView: UIView, ReusableView {
     var eventViews = [EventView]()
     public private(set) var regularLayoutAttributes = [EventLayoutAttributes]()
     public private(set) var allDayLayoutAttributes = [EventLayoutAttributes]()
-    var isHideAllDayView:Bool = false
+    public var isHideAllDayView:Bool = false
     
     public var layoutAttributes: [EventLayoutAttributes] {
         set {
