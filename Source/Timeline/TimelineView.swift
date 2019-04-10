@@ -53,6 +53,7 @@ public class TimelineView: UIView, ReusableView {
     var eventViews = [EventView]()
     public private(set) var regularLayoutAttributes = [EventLayoutAttributes]()
     public private(set) var allDayLayoutAttributes = [EventLayoutAttributes]()
+    public var isHideAllDayView:Bool = false
     
     public var layoutAttributes: [EventLayoutAttributes] {
         set {
@@ -78,10 +79,14 @@ public class TimelineView: UIView, ReusableView {
             
             recalculateEventLayout()
             prepareEventViews()
-            allDayView.events = allDayLayoutAttributes.map { $0.descriptor }
-            allDayView.isHidden = allDayLayoutAttributes.count == 0
-            allDayView.scrollToBottom()
-            
+            if(!isHideAllDayView) {
+                allDayView.events = allDayLayoutAttributes.map { $0.descriptor }
+                allDayView.isHidden = allDayLayoutAttributes.count == 0
+                allDayView.scrollToBottom()
+            }
+            else {
+                allDayView.isHidden = true
+            }
             setNeedsLayout()
         }
         get {
