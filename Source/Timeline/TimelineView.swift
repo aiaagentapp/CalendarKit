@@ -54,7 +54,7 @@ public class TimelineView: UIView, ReusableView {
     public private(set) var regularLayoutAttributes = [EventLayoutAttributes]()
     public private(set) var allDayLayoutAttributes = [EventLayoutAttributes]()
     public var isHideAllDayView:Bool = false
-    public var isLeaveGapBetweenEvents:Bool = false
+    public var gapBetweenEventsVal:CGFloat = 0.0
 
     public var layoutAttributes: [EventLayoutAttributes] {
         set {
@@ -371,7 +371,7 @@ public class TimelineView: UIView, ReusableView {
                 let endY = dateToY(event.descriptor.datePeriod.end!)
                 let floatIndex = CGFloat(index)
                 let x = style.leftInset + floatIndex / totalCount * calendarWidth
-                let equalWidth = calendarWidth / totalCount - (isLeaveGapBetweenEvents ? 5 : 0)
+                let equalWidth = calendarWidth / totalCount - gapBetweenEventsVal
                 event.frame = CGRect(x: x, y: startY, width: equalWidth, height: endY - startY)
             }
         }
