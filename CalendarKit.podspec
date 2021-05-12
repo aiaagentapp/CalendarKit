@@ -13,4 +13,5 @@ Pod::Spec.new do |s|
   s.dependency 'DateToolsSwift'
   s.dependency 'Neon'
   s.dependency 'https://github.com/aiaagentapp/ActiveLabel.swift'
+  s.source = { :git => "https://github.com/aiaagentapp/ActiveLabel.swift.git", :tag => s.version.to_s }
 end
