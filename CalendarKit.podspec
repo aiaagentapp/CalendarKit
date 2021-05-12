@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = "CalendarKit"
   s.summary          = "Fully customizable calendar for iOS"
-  s.version          = "0.5.31"
+  s.version          = "1.0.0"
   s.homepage         = "https://github.com/richardtop/CalendarKit"
   s.license          = 'MIT'
   s.author           = { "Richard Topchii" => "richardtop@users.noreply.github.com" }
@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.source_files = 'Source/**/*'
   s.dependency 'DateToolsSwift'
   s.dependency 'Neon'
-  s.dependency 'ActiveLabel'
+  s.dependency 'https://github.com/aiaagentapp/ActiveLabel.swift'
 end
