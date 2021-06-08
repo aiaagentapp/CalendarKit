@@ -12,4 +12,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Source/**/*'
   s.dependency 'DateToolsSwift'
   s.dependency 'Neon'
+  s.dependency 'ActiveLabel'
+  s.version = "1.1.5"
+  s.dependency 'https://github.com/aiaagentapp/ActiveLabel.swift'
 end
